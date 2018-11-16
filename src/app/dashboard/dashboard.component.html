@@ -1,0 +1,41 @@
+<div class="d-flex row justify-content-center">
+	<div *ngFor="let muscle of muscles" class="m-2 p-2">
+		<button class="btn btn-warning muscle-name"
+		(click)="selectMuscle(muscle)" id="{{muscle}}"
+		>{{muscle.name}}</button>
+	</div>
+</div>
+
+<div class="d-flex row justify-content-center">
+	<div *ngIf="selectedMuscle">
+		<h3>{{selectedMuscle.name}}</h3>
+		<h6 class="text-muted">Last lift : {{selectedMuscle.lifts[[sample]].lift}} Kg</h6>
+		<h6 class="text-muted">Max lift : {{maxLift}} Kg</h6>
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <button
+					(click)="save()"
+					class="btn btn-success input-group-text"
+					type="button"
+					id="button-addon1"
+				>Save</button>
+		  </div>
+		  <input
+				[(ngModel)]="newLift"
+				type="number"
+				class="weight-input form-control"
+				placeholder="newLift"
+				aria-label="Example text with button addon"
+				aria-describedby="button-addon1"
+			>
+			<div class="input-group-prepend">
+	    	<span class="input-group-text">Kg</span>
+	  	</div>
+		</div>
+	</div>
+</div>
+
+<app-line-chart
+	[xValues]="dates"
+	[yValues]="liftValues"
+></app-line-chart>
